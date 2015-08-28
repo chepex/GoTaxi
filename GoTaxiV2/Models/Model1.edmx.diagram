@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6ea4797dbb1a41e8b37f36bf6382de86" Name="Diagram1" ZoomLevel="66">
+        <EntityTypeShape EntityType="SIGTPPModel.conductor" Width="1.5" PointX="7.875" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGTPPModel.roles" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGTPPModel.tipoTransporte" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGTPPModel.transporte" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGTPPModel.usuario" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="SIGTPPModel.FK_conductor_transporte" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGTPPModel.FK_conductor_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGTPPModel.FK_usuarios_roles" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGTPPModel.FK_transporte_tipoTransporte" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGTPPModel.FK_transporte_usuarios" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SIGTPPModel.cotizacion" Width="1.5" PointX="7.5" PointY="0.875" />
+        <EntityTypeShape EntityType="SIGTPPModel.viaje" Width="1.5" PointX="10" PointY="4.125" />
+        <AssociationConnector Association="SIGTPPModel.FK_cotizacion_transporte1" />
+        <AssociationConnector Association="SIGTPPModel.FK_cotizacion_usuario1" />
+        <AssociationConnector Association="SIGTPPModel.FK_viaje_transporte1" />
+        <AssociationConnector Association="SIGTPPModel.FK_viaje_usuario1" />
+        <EntityTypeShape EntityType="SIGTPPModel.UserProfile" Width="1.5" PointX="12.625" PointY="0.875" />
+        <EntityTypeShape EntityType="SIGTPPModel.webpages_Membership" Width="1.5" PointX="17.5" PointY="5" />
+        <EntityTypeShape EntityType="SIGTPPModel.webpages_OAuthMembership" Width="1.5" PointX="15.625" PointY="5" />
+        <EntityTypeShape EntityType="SIGTPPModel.webpages_Roles" Width="1.5" PointX="10.375" PointY="0.875" />
+        <AssociationConnector Association="SIGTPPModel.webpages_UsersInRoles" />
+        <AssociationConnector Association="SIGTPPModel.FK_viaje_conductor" />
+        <EntityTypeShape EntityType="SIGTPPModel.Empresa" Width="1.5" PointX="8" PointY="9.875" />
+        <EntityTypeShape EntityType="SIGTPPModel.Estados" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="SIGTPPModel.pais" Width="1.5" PointX="5.625" PointY="10.375" />
+        <EntityTypeShape EntityType="SIGTPPModel.permisos" Width="1.5" PointX="1" PointY="9.625" />
+        <EntityTypeShape EntityType="SIGTPPModel.Recorrido" Width="1.5" PointX="11.875" PointY="2.875" />
+        <EntityTypeShape EntityType="SIGTPPModel.sysdiagrams" Width="1.5" PointX="14.875" PointY="0.875" />
+        <EntityTypeShape EntityType="SIGTPPModel.TipoComentario" Width="1.5" PointX="11.25" PointY="10.375" />
+        <AssociationConnector Association="SIGTPPModel.FK_conductor_Empresa" />
+        <AssociationConnector Association="SIGTPPModel.FK_Empresa_pais" />
+        <AssociationConnector Association="SIGTPPModel.FK_roles_Estados" />
+        <AssociationConnector Association="SIGTPPModel.FK_transporte_Estados" />
+        <AssociationConnector Association="SIGTPPModel.FK_permisos_roles" />
+        <AssociationConnector Association="SIGTPPModel.FK_Recorrido_viaje" />
+        <EntityTypeShape EntityType="SIGTPPModel.comentario" Width="1.5" PointX="10.25" PointY="12.75" />
+        <AssociationConnector Association="SIGTPPModel.FK_comentario_TipoComentario" />
+        <AssociationConnector Association="SIGTPPModel.FK_viaje_comentario" />
+        <EntityTypeShape EntityType="SIGTPPModel.Tarifa" Width="1.5" PointX="3" PointY="12.75" />
+        <AssociationConnector Association="SIGTPPModel.FK_Tarifa_Estados" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

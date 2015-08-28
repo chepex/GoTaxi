@@ -1,0 +1,1451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SIGTPPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="comentario">
+          <Key>
+            <PropertyRef Name="idComentario" />
+          </Key>
+          <Property Name="idComentario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="comentario" Type="varchar(max)" Nullable="false" />
+          <Property Name="idTipoComentario" Type="int" />
+        </EntityType>
+        <EntityType Name="conductor">
+          <Key>
+            <PropertyRef Name="idConductor" />
+          </Key>
+          <Property Name="idConductor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="250" />
+          <Property Name="licencia" Type="varchar" MaxLength="250" />
+          <Property Name="fechaIngreso" Type="date" />
+          <Property Name="idEstado" Type="int" />
+          <Property Name="puntuacion" Type="int" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="idTransporte" Type="int" />
+          <Property Name="idEmpresa" Type="int" />
+        </EntityType>
+        <EntityType Name="cotizacion">
+          <Key>
+            <PropertyRef Name="idCotizacion" />
+          </Key>
+          <Property Name="idCotizacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUusario" Type="int" />
+          <Property Name="Origen" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Destino" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="idTipoTransporte" Type="int" />
+          <Property Name="valor" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="representante" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="varchar" MaxLength="50" />
+          <Property Name="idPais" Type="int" />
+          <Property Name="correo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="pais">
+          <Key>
+            <PropertyRef Name="idPais" />
+          </Key>
+          <Property Name="idPais" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="moneda" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="permisos">
+          <Key>
+            <PropertyRef Name="idPermiso" />
+          </Key>
+          <Property Name="idPermiso" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="idRol" Type="int" />
+          <Property Name="objeto" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Recorrido">
+          <Key>
+            <PropertyRef Name="IdPunto" />
+          </Key>
+          <Property Name="IdPunto" Type="int" Nullable="false" />
+          <Property Name="idViaje" Type="int" />
+          <Property Name="fechaHora" Type="date" />
+          <Property Name="latitud" Type="varchar" MaxLength="50" />
+          <Property Name="longitud" Type="varchar" MaxLength="50" />
+          <Property Name="correlativo" Type="int" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="idRol" />
+          </Key>
+          <Property Name="idRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="250" />
+          <Property Name="descripcion" Type="varchar" MaxLength="250" />
+          <Property Name="idEstado" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tarifa">
+          <Key>
+            <PropertyRef Name="idTarifa" />
+          </Key>
+          <Property Name="idTarifa" Type="int" Nullable="false" />
+          <Property Name="tarifa" Type="int" />
+          <Property Name="idEstado" Type="int" />
+        </EntityType>
+        <EntityType Name="TipoComentario">
+          <Key>
+            <PropertyRef Name="idTipoComentario" />
+          </Key>
+          <Property Name="idTipoComentario" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tipoTransporte">
+          <Key>
+            <PropertyRef Name="idTipoTransporte" />
+          </Key>
+          <Property Name="idTipoTransporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="250" />
+          <Property Name="tarifa" Type="int" />
+        </EntityType>
+        <EntityType Name="transporte">
+          <Key>
+            <PropertyRef Name="idTransporte" />
+          </Key>
+          <Property Name="idTransporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoTransporte" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="250" />
+          <Property Name="descripcion" Type="varchar" MaxLength="250" />
+          <Property Name="placa" Type="varchar" MaxLength="250" />
+          <Property Name="propiedad" Type="varchar" MaxLength="250" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="estado" Type="nchar" MaxLength="10" />
+          <Property Name="latitud" Type="varchar" MaxLength="50" />
+          <Property Name="longitud" Type="varchar" MaxLength="50" />
+          <Property Name="idEstado" Type="int" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="56" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="sexo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="idTipoUsuario" Type="int" />
+          <Property Name="clave" Type="varchar" MaxLength="250" />
+          <Property Name="idRol" Type="int" />
+          <Property Name="telefono" Type="varchar" MaxLength="250" />
+          <Property Name="idEstado" Type="int" />
+          <Property Name="foto" Type="varchar" MaxLength="250" />
+          <Property Name="fechaRegistro" Type="date" />
+          <Property Name="numeroDocumento" Type="varchar" MaxLength="250" />
+          <Property Name="idEmpresa" Type="int" />
+        </EntityType>
+        <EntityType Name="viaje">
+          <Key>
+            <PropertyRef Name="idViaje" />
+          </Key>
+          <Property Name="idViaje" Type="int" Nullable="false" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="idConductor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="origen" Type="nchar" MaxLength="10" />
+          <Property Name="destino" Type="nchar" MaxLength="10" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="valor" Type="nchar" MaxLength="10" />
+          <Property Name="idTransporte" Type="int" />
+          <Property Name="calificacion" Type="int" />
+          <Property Name="idComentario" Type="int" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsConfirmed" Type="bit" />
+          <Property Name="LastPasswordFailureDate" Type="datetime" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordChangedDate" Type="datetime" />
+          <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ProviderUserId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_comentario_TipoComentario">
+          <End Role="TipoComentario" Type="Self.TipoComentario" Multiplicity="0..1" />
+          <End Role="comentario" Type="Self.comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoComentario">
+              <PropertyRef Name="idTipoComentario" />
+            </Principal>
+            <Dependent Role="comentario">
+              <PropertyRef Name="idTipoComentario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_conductor_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+          <End Role="conductor" Type="Self.conductor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="conductor">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_conductor_transporte">
+          <End Role="transporte" Type="Self.transporte" Multiplicity="0..1" />
+          <End Role="conductor" Type="Self.conductor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transporte">
+              <PropertyRef Name="idTransporte" />
+            </Principal>
+            <Dependent Role="conductor">
+              <PropertyRef Name="idTransporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_conductor_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="conductor" Type="Self.conductor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="conductor">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cotizacion_transporte1">
+          <End Role="transporte" Type="Self.transporte" Multiplicity="0..1" />
+          <End Role="cotizacion" Type="Self.cotizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transporte">
+              <PropertyRef Name="idTransporte" />
+            </Principal>
+            <Dependent Role="cotizacion">
+              <PropertyRef Name="idTipoTransporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cotizacion_usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="cotizacion" Type="Self.cotizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="cotizacion">
+              <PropertyRef Name="idUusario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_pais">
+          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_permisos_roles">
+          <End Role="roles" Type="Self.roles" Multiplicity="0..1" />
+          <End Role="permisos" Type="Self.permisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="idRol" />
+            </Principal>
+            <Dependent Role="permisos">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recorrido_viaje">
+          <End Role="viaje" Type="Self.viaje" Multiplicity="0..1" />
+          <End Role="Recorrido" Type="Self.Recorrido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="viaje">
+              <PropertyRef Name="idViaje" />
+            </Principal>
+            <Dependent Role="Recorrido">
+              <PropertyRef Name="idViaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoleId">
+          <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_roles_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+          <End Role="roles" Type="Self.roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="roles">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tarifa_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+          <End Role="Tarifa" Type="Self.Tarifa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Tarifa">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transporte_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+          <End Role="transporte" Type="Self.transporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="transporte">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transporte_tipoTransporte">
+          <End Role="tipoTransporte" Type="Self.tipoTransporte" Multiplicity="0..1" />
+          <End Role="transporte" Type="Self.transporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoTransporte">
+              <PropertyRef Name="idTipoTransporte" />
+            </Principal>
+            <Dependent Role="transporte">
+              <PropertyRef Name="idTipoTransporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transporte_usuarios">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="transporte" Type="Self.transporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="transporte">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserId">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuarios_roles">
+          <End Role="roles" Type="Self.roles" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="idRol" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_viaje_comentario">
+          <End Role="comentario" Type="Self.comentario" Multiplicity="0..1" />
+          <End Role="viaje" Type="Self.viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comentario">
+              <PropertyRef Name="idComentario" />
+            </Principal>
+            <Dependent Role="viaje">
+              <PropertyRef Name="idComentario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_viaje_conductor">
+          <End Role="conductor" Type="Self.conductor" Multiplicity="1" />
+          <End Role="viaje" Type="Self.viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="conductor">
+              <PropertyRef Name="idConductor" />
+            </Principal>
+            <Dependent Role="viaje">
+              <PropertyRef Name="idConductor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_viaje_transporte1">
+          <End Role="transporte" Type="Self.transporte" Multiplicity="0..1" />
+          <End Role="viaje" Type="Self.viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transporte">
+              <PropertyRef Name="idTransporte" />
+            </Principal>
+            <Dependent Role="viaje">
+              <PropertyRef Name="idTransporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_viaje_usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="viaje" Type="Self.viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="viaje">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SIGTPPModelStoreContainer">
+          <EntitySet Name="comentario" EntityType="Self.comentario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="conductor" EntityType="Self.conductor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cotizacion" EntityType="Self.cotizacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pais" EntityType="Self.pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="permisos" EntityType="Self.permisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recorrido" EntityType="Self.Recorrido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tarifa" EntityType="Self.Tarifa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoComentario" EntityType="Self.TipoComentario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipoTransporte" EntityType="Self.tipoTransporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transporte" EntityType="Self.transporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="viaje" EntityType="Self.viaje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_Membership" EntityType="Self.webpages_Membership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_UsersInRoles" EntityType="Self.webpages_UsersInRoles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_comentario_TipoComentario" Association="Self.FK_comentario_TipoComentario">
+            <End Role="TipoComentario" EntitySet="TipoComentario" />
+            <End Role="comentario" EntitySet="comentario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_conductor_Empresa" Association="Self.FK_conductor_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="conductor" EntitySet="conductor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_conductor_transporte" Association="Self.FK_conductor_transporte">
+            <End Role="transporte" EntitySet="transporte" />
+            <End Role="conductor" EntitySet="conductor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_conductor_usuario" Association="Self.FK_conductor_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="conductor" EntitySet="conductor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cotizacion_transporte1" Association="Self.FK_cotizacion_transporte1">
+            <End Role="transporte" EntitySet="transporte" />
+            <End Role="cotizacion" EntitySet="cotizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cotizacion_usuario1" Association="Self.FK_cotizacion_usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="cotizacion" EntitySet="cotizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_pais" Association="Self.FK_Empresa_pais">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_permisos_roles" Association="Self.FK_permisos_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="permisos" EntitySet="permisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recorrido_viaje" Association="Self.FK_Recorrido_viaje">
+            <End Role="viaje" EntitySet="viaje" />
+            <End Role="Recorrido" EntitySet="Recorrido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoleId" Association="Self.fk_RoleId">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_roles_Estados" Association="Self.FK_roles_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="roles" EntitySet="roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tarifa_Estados" Association="Self.FK_Tarifa_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Tarifa" EntitySet="Tarifa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transporte_Estados" Association="Self.FK_transporte_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="transporte" EntitySet="transporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transporte_tipoTransporte" Association="Self.FK_transporte_tipoTransporte">
+            <End Role="tipoTransporte" EntitySet="tipoTransporte" />
+            <End Role="transporte" EntitySet="transporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transporte_usuarios" Association="Self.FK_transporte_usuarios">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="transporte" EntitySet="transporte" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserId" Association="Self.fk_UserId">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuarios_roles" Association="Self.FK_usuarios_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_viaje_comentario" Association="Self.FK_viaje_comentario">
+            <End Role="comentario" EntitySet="comentario" />
+            <End Role="viaje" EntitySet="viaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_viaje_conductor" Association="Self.FK_viaje_conductor">
+            <End Role="conductor" EntitySet="conductor" />
+            <End Role="viaje" EntitySet="viaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_viaje_transporte1" Association="Self.FK_viaje_transporte1">
+            <End Role="transporte" EntitySet="transporte" />
+            <End Role="viaje" EntitySet="viaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_viaje_usuario1" Association="Self.FK_viaje_usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="viaje" EntitySet="viaje" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SIGTPPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="conductor">
+          <Key>
+            <PropertyRef Name="idConductor" />
+          </Key>
+          <Property Name="idConductor" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="licencia" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="fechaIngreso" Type="DateTime" Precision="0" />
+          <Property Name="idEstado" Type="Int32" />
+          <Property Name="puntuacion" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="idTransporte" Type="Int32" />
+          <NavigationProperty Name="transporte" Relationship="Self.FK_conductor_transporte" FromRole="conductor" ToRole="transporte" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_conductor_usuario" FromRole="conductor" ToRole="usuario" />
+          <NavigationProperty Name="viaje" Relationship="SIGTPPModel.FK_viaje_conductor" FromRole="conductor" ToRole="viaje" />
+          <Property Name="idEmpresa" Type="Int32" />
+          <NavigationProperty Name="Empresa" Relationship="SIGTPPModel.FK_conductor_Empresa" FromRole="conductor" ToRole="Empresa" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="idRol" />
+          </Key>
+          <Property Name="idRol" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="idEstado" Type="Int32" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_usuarios_roles" FromRole="roles" ToRole="usuario" />
+          <NavigationProperty Name="Estados" Relationship="SIGTPPModel.FK_roles_Estados" FromRole="roles" ToRole="Estados" />
+          <NavigationProperty Name="permisos" Relationship="SIGTPPModel.FK_permisos_roles" FromRole="roles" ToRole="permisos" />
+        </EntityType>
+        <EntityType Name="tipoTransporte">
+          <Key>
+            <PropertyRef Name="idTipoTransporte" />
+          </Key>
+          <Property Name="idTipoTransporte" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="tarifa" Type="Int32" />
+          <NavigationProperty Name="transporte" Relationship="Self.FK_transporte_tipoTransporte" FromRole="tipoTransporte" ToRole="transporte" />
+        </EntityType>
+        <EntityType Name="transporte">
+          <Key>
+            <PropertyRef Name="idTransporte" />
+          </Key>
+          <Property Name="idTransporte" Type="Int32" Nullable="false" />
+          <Property Name="idTipoTransporte" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="placa" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="propiedad" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="estado" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="conductor" Relationship="Self.FK_conductor_transporte" FromRole="transporte" ToRole="conductor" />
+          <NavigationProperty Name="tipoTransporte" Relationship="Self.FK_transporte_tipoTransporte" FromRole="transporte" ToRole="tipoTransporte" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_transporte_usuarios" FromRole="transporte" ToRole="usuario" />
+          <NavigationProperty Name="cotizacion" Relationship="SIGTPPModel.FK_cotizacion_transporte1" FromRole="transporte" ToRole="cotizacion" />
+          <NavigationProperty Name="viaje" Relationship="SIGTPPModel.FK_viaje_transporte1" FromRole="transporte" ToRole="viaje" />
+          <Property Name="latitud" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="longitud" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idEstado" Type="Int32" />
+          <NavigationProperty Name="Estados" Relationship="SIGTPPModel.FK_transporte_Estados" FromRole="transporte" ToRole="Estados" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="correo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="idTipoUsuario" Type="Int32" />
+          <Property Name="clave" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="idRol" Type="Int32" />
+          <Property Name="telefono" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="idEstado" Type="Int32" />
+          <Property Name="foto" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Precision="0" />
+          <Property Name="numeroDocumento" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="idEmpresa" Type="Int32" />
+          <NavigationProperty Name="conductor" Relationship="Self.FK_conductor_usuario" FromRole="usuario" ToRole="conductor" />
+          <NavigationProperty Name="roles" Relationship="Self.FK_usuarios_roles" FromRole="usuario" ToRole="roles" />
+          <NavigationProperty Name="transporte" Relationship="Self.FK_transporte_usuarios" FromRole="usuario" ToRole="transporte" />
+          <NavigationProperty Name="cotizacion" Relationship="SIGTPPModel.FK_cotizacion_usuario1" FromRole="usuario" ToRole="cotizacion" />
+          <NavigationProperty Name="viaje" Relationship="SIGTPPModel.FK_viaje_usuario1" FromRole="usuario" ToRole="viaje" />
+        </EntityType>
+        <Association Name="FK_conductor_transporte">
+          <End Role="transporte" Type="Self.transporte" Multiplicity="0..1" />
+          <End Role="conductor" Type="Self.conductor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transporte">
+              <PropertyRef Name="idTransporte" />
+            </Principal>
+            <Dependent Role="conductor">
+              <PropertyRef Name="idTransporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_conductor_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="conductor" Type="Self.conductor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="conductor">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuarios_roles">
+          <End Role="roles" Type="Self.roles" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="idRol" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transporte_tipoTransporte">
+          <End Role="tipoTransporte" Type="Self.tipoTransporte" Multiplicity="0..1" />
+          <End Role="transporte" Type="Self.transporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoTransporte">
+              <PropertyRef Name="idTipoTransporte" />
+            </Principal>
+            <Dependent Role="transporte">
+              <PropertyRef Name="idTipoTransporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transporte_usuarios">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="transporte" Type="Self.transporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="transporte">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SIGTPPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="conductor" EntityType="Self.conductor" />
+          <EntitySet Name="roles" EntityType="Self.roles" />
+          <EntitySet Name="tipoTransporte" EntityType="Self.tipoTransporte" />
+          <EntitySet Name="transporte" EntityType="Self.transporte" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="FK_conductor_transporte" Association="Self.FK_conductor_transporte">
+            <End Role="transporte" EntitySet="transporte" />
+            <End Role="conductor" EntitySet="conductor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_conductor_usuario" Association="Self.FK_conductor_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="conductor" EntitySet="conductor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuarios_roles" Association="Self.FK_usuarios_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transporte_tipoTransporte" Association="Self.FK_transporte_tipoTransporte">
+            <End Role="tipoTransporte" EntitySet="tipoTransporte" />
+            <End Role="transporte" EntitySet="transporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transporte_usuarios" Association="Self.FK_transporte_usuarios">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="transporte" EntitySet="transporte" />
+          </AssociationSet>
+          <EntitySet Name="cotizacion" EntityType="SIGTPPModel.cotizacion" />
+          <EntitySet Name="viaje" EntityType="SIGTPPModel.viaje" />
+          <AssociationSet Name="FK_cotizacion_transporte1" Association="SIGTPPModel.FK_cotizacion_transporte1">
+            <End Role="transporte" EntitySet="transporte" />
+            <End Role="cotizacion" EntitySet="cotizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cotizacion_usuario1" Association="SIGTPPModel.FK_cotizacion_usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="cotizacion" EntitySet="cotizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_viaje_transporte1" Association="SIGTPPModel.FK_viaje_transporte1">
+            <End Role="transporte" EntitySet="transporte" />
+            <End Role="viaje" EntitySet="viaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_viaje_usuario1" Association="SIGTPPModel.FK_viaje_usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="viaje" EntitySet="viaje" />
+          </AssociationSet>
+          <EntitySet Name="UserProfile" EntityType="SIGTPPModel.UserProfile" />
+          <EntitySet Name="webpages_Membership" EntityType="SIGTPPModel.webpages_Membership" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="SIGTPPModel.webpages_OAuthMembership" />
+          <EntitySet Name="webpages_Roles" EntityType="SIGTPPModel.webpages_Roles" />
+          <AssociationSet Name="webpages_UsersInRoles" Association="SIGTPPModel.webpages_UsersInRoles">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_viaje_conductor" Association="SIGTPPModel.FK_viaje_conductor">
+            <End Role="conductor" EntitySet="conductor" />
+            <End Role="viaje" EntitySet="viaje" />
+          </AssociationSet>
+          <EntitySet Name="Empresa" EntityType="SIGTPPModel.Empresa" />
+          <EntitySet Name="Estados" EntityType="SIGTPPModel.Estados" />
+          <EntitySet Name="pais" EntityType="SIGTPPModel.pais" />
+          <EntitySet Name="permisos" EntityType="SIGTPPModel.permisos" />
+          <EntitySet Name="Recorrido" EntityType="SIGTPPModel.Recorrido" />
+          <EntitySet Name="sysdiagrams" EntityType="SIGTPPModel.sysdiagrams" />
+          <EntitySet Name="TipoComentario" EntityType="SIGTPPModel.TipoComentario" />
+          <AssociationSet Name="FK_conductor_Empresa" Association="SIGTPPModel.FK_conductor_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="conductor" EntitySet="conductor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_pais" Association="SIGTPPModel.FK_Empresa_pais">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_roles_Estados" Association="SIGTPPModel.FK_roles_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="roles" EntitySet="roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transporte_Estados" Association="SIGTPPModel.FK_transporte_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="transporte" EntitySet="transporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_permisos_roles" Association="SIGTPPModel.FK_permisos_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="permisos" EntitySet="permisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recorrido_viaje" Association="SIGTPPModel.FK_Recorrido_viaje">
+            <End Role="viaje" EntitySet="viaje" />
+            <End Role="Recorrido" EntitySet="Recorrido" />
+          </AssociationSet>
+          <EntitySet Name="comentario" EntityType="SIGTPPModel.comentario" />
+          <AssociationSet Name="FK_comentario_TipoComentario" Association="SIGTPPModel.FK_comentario_TipoComentario">
+            <End Role="TipoComentario" EntitySet="TipoComentario" />
+            <End Role="comentario" EntitySet="comentario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_viaje_comentario" Association="SIGTPPModel.FK_viaje_comentario">
+            <End Role="comentario" EntitySet="comentario" />
+            <End Role="viaje" EntitySet="viaje" />
+          </AssociationSet>
+          <EntitySet Name="Tarifa" EntityType="SIGTPPModel.Tarifa" />
+          <AssociationSet Name="FK_Tarifa_Estados" Association="SIGTPPModel.FK_Tarifa_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Tarifa" EntitySet="Tarifa" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="cotizacion">
+          <Key>
+            <PropertyRef Name="idCotizacion" />
+          </Key>
+          <Property Name="idCotizacion" Type="Int32" Nullable="false" />
+          <Property Name="idUusario" Type="Int32" />
+          <Property Name="Origen" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Destino" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="idTipoTransporte" Type="Int32" />
+          <Property Name="valor" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="transporte" Relationship="SIGTPPModel.FK_cotizacion_transporte1" FromRole="cotizacion" ToRole="transporte" />
+          <NavigationProperty Name="usuario" Relationship="SIGTPPModel.FK_cotizacion_usuario1" FromRole="cotizacion" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="viaje">
+          <Key>
+            <PropertyRef Name="idViaje" />
+          </Key>
+          <Property Name="idViaje" Type="Int32" Nullable="false" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="idConductor" Type="Int32" Nullable="false" />
+          <Property Name="origen" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="destino" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="valor" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="idTransporte" Type="Int32" />
+          <NavigationProperty Name="transporte" Relationship="SIGTPPModel.FK_viaje_transporte1" FromRole="viaje" ToRole="transporte" />
+          <NavigationProperty Name="usuario" Relationship="SIGTPPModel.FK_viaje_usuario1" FromRole="viaje" ToRole="usuario" />
+          <NavigationProperty Name="conductor" Relationship="SIGTPPModel.FK_viaje_conductor" FromRole="viaje" ToRole="conductor" />
+          <Property Name="calificacion" Type="Int32" />
+          <Property Name="idComentario" Type="Int32" />
+          <NavigationProperty Name="Recorrido" Relationship="SIGTPPModel.FK_Recorrido_viaje" FromRole="viaje" ToRole="Recorrido" />
+          <NavigationProperty Name="comentario" Relationship="SIGTPPModel.FK_viaje_comentario" FromRole="viaje" ToRole="comentario" />
+        </EntityType>
+        <Association Name="FK_cotizacion_transporte1">
+          <End Type="SIGTPPModel.transporte" Role="transporte" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.cotizacion" Role="cotizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transporte">
+              <PropertyRef Name="idTransporte" />
+            </Principal>
+            <Dependent Role="cotizacion">
+              <PropertyRef Name="idTipoTransporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cotizacion_usuario1">
+          <End Type="SIGTPPModel.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.cotizacion" Role="cotizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="cotizacion">
+              <PropertyRef Name="idUusario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_viaje_transporte1">
+          <End Type="SIGTPPModel.transporte" Role="transporte" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transporte">
+              <PropertyRef Name="idTransporte" />
+            </Principal>
+            <Dependent Role="viaje">
+              <PropertyRef Name="idTransporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_viaje_usuario1">
+          <End Type="SIGTPPModel.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="viaje">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="webpages_Roles" Relationship="SIGTPPModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ConfirmationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IsConfirmed" Type="Boolean" />
+          <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserProfile" Relationship="SIGTPPModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="webpages_UsersInRoles">
+          <End Type="SIGTPPModel.webpages_Roles" Role="webpages_Roles" Multiplicity="*" />
+          <End Type="SIGTPPModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_viaje_conductor">
+          <End Type="SIGTPPModel.conductor" Role="conductor" Multiplicity="1" />
+          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="conductor">
+              <PropertyRef Name="idConductor" />
+            </Principal>
+            <Dependent Role="viaje">
+              <PropertyRef Name="idConductor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="representante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idPais" Type="Int32" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="conductor" Relationship="SIGTPPModel.FK_conductor_Empresa" FromRole="Empresa" ToRole="conductor" />
+          <NavigationProperty Name="pais" Relationship="SIGTPPModel.FK_Empresa_pais" FromRole="Empresa" ToRole="pais" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="roles" Relationship="SIGTPPModel.FK_roles_Estados" FromRole="Estados" ToRole="roles" />
+          <NavigationProperty Name="transporte" Relationship="SIGTPPModel.FK_transporte_Estados" FromRole="Estados" ToRole="transporte" />
+          <NavigationProperty Name="Tarifa" Relationship="SIGTPPModel.FK_Tarifa_Estados" FromRole="Estados" ToRole="Tarifa" />
+        </EntityType>
+        <EntityType Name="pais">
+          <Key>
+            <PropertyRef Name="idPais" />
+          </Key>
+          <Property Name="idPais" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="moneda" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empresa" Relationship="SIGTPPModel.FK_Empresa_pais" FromRole="pais" ToRole="Empresa" />
+        </EntityType>
+        <EntityType Name="permisos">
+          <Key>
+            <PropertyRef Name="idPermiso" />
+          </Key>
+          <Property Name="idPermiso" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idRol" Type="Int32" />
+          <Property Name="objeto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="roles" Relationship="SIGTPPModel.FK_permisos_roles" FromRole="permisos" ToRole="roles" />
+        </EntityType>
+        <EntityType Name="Recorrido">
+          <Key>
+            <PropertyRef Name="IdPunto" />
+          </Key>
+          <Property Name="IdPunto" Type="Int32" Nullable="false" />
+          <Property Name="idViaje" Type="Int32" />
+          <Property Name="fechaHora" Type="DateTime" Precision="0" />
+          <Property Name="latitud" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="longitud" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correlativo" Type="Int32" />
+          <NavigationProperty Name="viaje" Relationship="SIGTPPModel.FK_Recorrido_viaje" FromRole="Recorrido" ToRole="viaje" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoComentario">
+          <Key>
+            <PropertyRef Name="idTipoComentario" />
+          </Key>
+          <Property Name="idTipoComentario" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="comentario" Relationship="SIGTPPModel.FK_comentario_TipoComentario" FromRole="TipoComentario" ToRole="comentario" />
+        </EntityType>
+        <Association Name="FK_conductor_Empresa">
+          <End Type="SIGTPPModel.Empresa" Role="Empresa" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.conductor" Role="conductor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="conductor">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_pais">
+          <End Type="SIGTPPModel.pais" Role="pais" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.Empresa" Role="Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_roles_Estados">
+          <End Type="SIGTPPModel.Estados" Role="Estados" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.roles" Role="roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="roles">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transporte_Estados">
+          <End Type="SIGTPPModel.Estados" Role="Estados" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.transporte" Role="transporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="transporte">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_permisos_roles">
+          <End Type="SIGTPPModel.roles" Role="roles" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.permisos" Role="permisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="idRol" />
+            </Principal>
+            <Dependent Role="permisos">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recorrido_viaje">
+          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.Recorrido" Role="Recorrido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="viaje">
+              <PropertyRef Name="idViaje" />
+            </Principal>
+            <Dependent Role="Recorrido">
+              <PropertyRef Name="idViaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="comentario">
+          <Key>
+            <PropertyRef Name="idComentario" />
+          </Key>
+          <Property Name="idComentario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="comentario1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idTipoComentario" Type="Int32" />
+          <NavigationProperty Name="TipoComentario" Relationship="SIGTPPModel.FK_comentario_TipoComentario" FromRole="comentario" ToRole="TipoComentario" />
+          <NavigationProperty Name="viaje" Relationship="SIGTPPModel.FK_viaje_comentario" FromRole="comentario" ToRole="viaje" />
+        </EntityType>
+        <Association Name="FK_comentario_TipoComentario">
+          <End Type="SIGTPPModel.TipoComentario" Role="TipoComentario" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.comentario" Role="comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoComentario">
+              <PropertyRef Name="idTipoComentario" />
+            </Principal>
+            <Dependent Role="comentario">
+              <PropertyRef Name="idTipoComentario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_viaje_comentario">
+          <End Type="SIGTPPModel.comentario" Role="comentario" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comentario">
+              <PropertyRef Name="idComentario" />
+            </Principal>
+            <Dependent Role="viaje">
+              <PropertyRef Name="idComentario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tarifa">
+          <Key>
+            <PropertyRef Name="idTarifa" />
+          </Key>
+          <Property Name="idTarifa" Type="Int32" Nullable="false" />
+          <Property Name="tarifa1" Type="Int32" />
+          <Property Name="idEstado" Type="Int32" />
+          <NavigationProperty Name="Estados" Relationship="SIGTPPModel.FK_Tarifa_Estados" FromRole="Tarifa" ToRole="Estados" />
+        </EntityType>
+        <Association Name="FK_Tarifa_Estados">
+          <End Type="SIGTPPModel.Estados" Role="Estados" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.Tarifa" Role="Tarifa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Tarifa">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SIGTPPModelStoreContainer" CdmEntityContainer="SIGTPPEntities">
+          <EntitySetMapping Name="conductor">
+            <EntityTypeMapping TypeName="SIGTPPModel.conductor">
+              <MappingFragment StoreEntitySet="conductor">
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="idConductor" ColumnName="idConductor" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="licencia" ColumnName="licencia" />
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="puntuacion" ColumnName="puntuacion" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idTransporte" ColumnName="idTransporte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="SIGTPPModel.roles">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoTransporte">
+            <EntityTypeMapping TypeName="SIGTPPModel.tipoTransporte">
+              <MappingFragment StoreEntitySet="tipoTransporte">
+                <ScalarProperty Name="idTipoTransporte" ColumnName="idTipoTransporte" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="tarifa" ColumnName="tarifa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transporte">
+            <EntityTypeMapping TypeName="SIGTPPModel.transporte">
+              <MappingFragment StoreEntitySet="transporte">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="idTransporte" ColumnName="idTransporte" />
+                <ScalarProperty Name="idTipoTransporte" ColumnName="idTipoTransporte" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="placa" ColumnName="placa" />
+                <ScalarProperty Name="propiedad" ColumnName="propiedad" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="SIGTPPModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="idTipoUsuario" ColumnName="idTipoUsuario" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="numeroDocumento" ColumnName="numeroDocumento" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cotizacion">
+            <EntityTypeMapping TypeName="SIGTPPModel.cotizacion">
+              <MappingFragment StoreEntitySet="cotizacion">
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="idTipoTransporte" ColumnName="idTipoTransporte" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="idUusario" ColumnName="idUusario" />
+                <ScalarProperty Name="idCotizacion" ColumnName="idCotizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viaje">
+            <EntityTypeMapping TypeName="SIGTPPModel.viaje">
+              <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="idComentario" ColumnName="idComentario" />
+                <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+                <ScalarProperty Name="idTransporte" ColumnName="idTransporte" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="destino" ColumnName="destino" />
+                <ScalarProperty Name="origen" ColumnName="origen" />
+                <ScalarProperty Name="idConductor" ColumnName="idConductor" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idViaje" ColumnName="idViaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfile">
+            <EntityTypeMapping TypeName="SIGTPPModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Membership">
+            <EntityTypeMapping TypeName="SIGTPPModel.webpages_Membership">
+              <MappingFragment StoreEntitySet="webpages_Membership">
+                <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_OAuthMembership">
+            <EntityTypeMapping TypeName="SIGTPPModel.webpages_OAuthMembership">
+              <MappingFragment StoreEntitySet="webpages_OAuthMembership">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Roles">
+            <EntityTypeMapping TypeName="SIGTPPModel.webpages_Roles">
+              <MappingFragment StoreEntitySet="webpages_Roles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="webpages_UsersInRoles" TypeName="SIGTPPModel.webpages_UsersInRoles" StoreEntitySet="webpages_UsersInRoles">
+            <EndProperty Name="UserProfile">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="webpages_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="SIGTPPModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="idPais" ColumnName="idPais" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="representante" ColumnName="representante" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estados">
+            <EntityTypeMapping TypeName="SIGTPPModel.Estados">
+              <MappingFragment StoreEntitySet="Estados">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pais">
+            <EntityTypeMapping TypeName="SIGTPPModel.pais">
+              <MappingFragment StoreEntitySet="pais">
+                <ScalarProperty Name="moneda" ColumnName="moneda" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idPais" ColumnName="idPais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permisos">
+            <EntityTypeMapping TypeName="SIGTPPModel.permisos">
+              <MappingFragment StoreEntitySet="permisos">
+                <ScalarProperty Name="objeto" ColumnName="objeto" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idPermiso" ColumnName="idPermiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recorrido">
+            <EntityTypeMapping TypeName="SIGTPPModel.Recorrido">
+              <MappingFragment StoreEntitySet="Recorrido">
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="fechaHora" ColumnName="fechaHora" />
+                <ScalarProperty Name="idViaje" ColumnName="idViaje" />
+                <ScalarProperty Name="IdPunto" ColumnName="IdPunto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SIGTPPModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoComentario">
+            <EntityTypeMapping TypeName="SIGTPPModel.TipoComentario">
+              <MappingFragment StoreEntitySet="TipoComentario">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idTipoComentario" ColumnName="idTipoComentario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comentario">
+            <EntityTypeMapping TypeName="SIGTPPModel.comentario">
+              <MappingFragment StoreEntitySet="comentario">
+                <ScalarProperty Name="idTipoComentario" ColumnName="idTipoComentario" />
+                <ScalarProperty Name="comentario1" ColumnName="comentario" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idComentario" ColumnName="idComentario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarifa">
+            <EntityTypeMapping TypeName="SIGTPPModel.Tarifa">
+              <MappingFragment StoreEntitySet="Tarifa">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="tarifa1" ColumnName="tarifa" />
+                <ScalarProperty Name="idTarifa" ColumnName="idTarifa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

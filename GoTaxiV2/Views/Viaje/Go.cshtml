@@ -1,0 +1,117 @@
+﻿<script src="http://maps.google.com/?file=api&v=2.x&key=AIzaSyBXrpSPEEVDZsylDjI7l-q1erzfLiXquw4" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<style>
+   
+</style>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     
+        $("#moto2").click(function () {   
+            var olatitud = $("#olatitud").val();
+            var olongitud = $("#olongitud").val();
+            $.ajax({
+                type: 'POST',
+                url: '/Viaje/Summary',
+                data: 'var1=' + olatitud + '&var2=' + olongitud,
+                success: function (msg) {
+                    
+                    $("#resultado").html(msg);
+                }
+            });
+        });
+
+
+        $(".motorista").live("click", function () {
+            alert("Goodbye!"); // jQuery 1.3+
+        });
+
+
+        $(".imgMoto").live("click", function () {
+            alert("nombre:mario ");
+            alert("nombre:mario ");
+        });
+
+        $("#rootwizard").bootstrapWizard();
+
+    });
+
+
+   
+
+   
+
+    
+
+</script>
+@Scripts.Render("~/Scripts/map.js")
+@{
+    ViewBag.Title = "Go";
+    
+}
+
+
+    <br />
+    
+    
+
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#ruta" aria-controls="ruta" role="tab" data-toggle="tab">Ruta</a></li>
+        <li id="moto2"  role="presentation"><a id="moto" href="#motorista" aria-controls="motorista" role="tab" data-toggle="tab">Motorista</a></li>
+        <li role="presentation"><a href="#go" aria-controls="go" role="tab" data-toggle="tab">Go</a></li>
+        
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="ruta">
+            <div class="contact-form">
+
+
+
+                <form action="#" name="form_ruta" onsubmit="obtenerRuta(this.desde.value, this.hasta.value); return false">
+                    <input id="olatitud" type="hidden"/>
+                    <input id="olongitud" type="hidden" />
+                    <div class="form-group">
+                        <label for="desde">Direccion de Origen</label>
+                        <input id="desde" name="desde" type="text" class="form-control" placeholder="Origen" value="Mejicanos, El Salvador">
+                    </div>
+                    <div class="form-group">
+                        <label for="hasta">Direccion Destino</label>
+                        <input class="form-control" type="text" id="hasta" name="hasta" value="Metrocentro, El Salvador">
+                    </div>
+                    <div class="form-group">
+                        <label for="distancia">Distancia Aproximada</label>
+                        <span id="distancia2" name="distancia2"></span>
+                        <input class="form-control" type="text" id="distancia" name="distancia" value="" readonly>
+                    </div>
+                    <input name="ruta" class="btn btn-default" type="submit" value="Obtener ruta" />
+
+                </form>
+
+
+                <div id="map" style="width: 100%; height: 270px"></div>
+            </div>
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="motorista">
+
+            <div id="resultado"></div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="go">3</div>
+        
+    </div>
+
+</div>
+
+          
+
+
+    <script>
+        window.onload = load;
+     //  window.onunload = GUnload;
+    </script>

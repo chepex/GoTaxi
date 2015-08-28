@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/bootstrap.min.css")
+        
+        <script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+        <script src="http://librosweb.es/ejemplos/bootstrap_3/js/jquery.min.js" type="text/javascript"></script>
+        
+        <script src="http://librosweb.es/ejemplos/bootstrap_3/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="http://vadimg.com/twitter-bootstrap-wizard-example/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+        
+    </head>
+    <body>
+
+        <div class="container" style="padding-top: 1em;">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle collapsed" aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button">
+                            <a class="" href="#">Project name</a>
+                        </button>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="index.html">Home</a></li>
+                            <li>@Html.ActionLink("Go", "Go", "Viaje")</li>
+
+                            <li><a href="projects.html">Cotizar</a></li>
+                            <li><a href="services.html">Viajes</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        
+            
+
+
+             
+              
+        <div class="container" style="padding-top: 1em;">
+            <div id="body">
+             @RenderSection("featured", required: false)             
+             @RenderBody()             
+            </div>
+        </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

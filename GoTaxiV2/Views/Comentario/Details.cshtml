@@ -1,0 +1,64 @@
+﻿@model GoTaxiV2.Models.comentario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>comentario</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idComentario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idComentario)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.usuario.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuario.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fecha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fecha)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.comentario1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.comentario1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idTipoComentario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idTipoComentario)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.conductor.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.conductor.nombre)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

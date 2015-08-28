@@ -1,0 +1,50 @@
+﻿@model GoTaxiV2.Models.queja
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>queja</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idQueja)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idQueja)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.usuario.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuario.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.conductor.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.conductor.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fecha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fecha)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.comentario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.comentario)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

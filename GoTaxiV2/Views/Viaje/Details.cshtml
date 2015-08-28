@@ -1,0 +1,71 @@
+﻿@model GoTaxiV2.Models.viaje
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>viaje</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idViaje)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idViaje)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.usuario.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuario.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.conductor.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.conductor.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.origen)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.origen)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.destino)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.destino)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fecha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fecha)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.valor)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.valor)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.transporte.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.transporte.nombre)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

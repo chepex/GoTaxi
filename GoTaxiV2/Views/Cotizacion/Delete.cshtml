@@ -1,0 +1,68 @@
+﻿@model GoTaxiV2.Models.cotizacion
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>cotizacion</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idCotizacion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idCotizacion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.usuario.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuario.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Origen)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Origen)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Destino)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Destino)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fecha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fecha)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.transporte.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.transporte.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.valor)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.valor)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
