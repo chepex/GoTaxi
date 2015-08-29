@@ -154,6 +154,22 @@ namespace GoTaxiV2.Controllers
             return distance;
         }
 
+        public ActionResult DatosConductor(String vId)
+        {
+            string datos ="";
+            int conductId = Convert.ToInt32(vId);
+              var vconductor = db.conductor.Where(p => p.idTransporte == conductId );
+             
+                foreach (var elementos in vconductor)
+                {
+                datos =datos+"Nombre:"+elementos.nombre;
+                datos =datos+"Empresa:"+elementos.Empresa.nombre ;
+                }
+                return Json(datos, JsonRequestBehavior.AllowGet); ;
+
+        }
+
+
         public ActionResult Summary(String var1, String var2)
         {
 

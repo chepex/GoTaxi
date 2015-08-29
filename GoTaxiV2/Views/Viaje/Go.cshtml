@@ -29,6 +29,16 @@
 
 
         $(".imgMoto").live("click", function () {
+            $.ajax({
+                type: 'POST',
+                url: '/Viaje/Summary',
+                data: 'var1=' + olatitud + '&var2=' + olongitud,
+                success: function (msg) {
+
+                    $("#resultado").html(msg);
+                }
+            });
+            DatosConductor
             alert("nombre:mario || apellido :mixco");
             alert("nombre:mario ");
         });
