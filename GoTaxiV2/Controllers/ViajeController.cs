@@ -158,13 +158,42 @@ namespace GoTaxiV2.Controllers
         {
             string datos ="";
             int conductId = Convert.ToInt32(vId);
-              var vconductor = db.conductor.Where(p => p.idTransporte == conductId );
-             
+              var vconductor = db.conductor.Where(p => p.idConductor == conductId );
+              datos = "<img class= 'center-block img-responsive img-rounded' src = '/images/blog-img.jpg' >";
+              datos += "<table class=  \"table table-striped table-bordered\" >";
                 foreach (var elementos in vconductor)
                 {
-                datos =datos+"Nombre:"+elementos.nombre;
-                datos =datos+"Empresa:"+elementos.Empresa.nombre ;
+                    datos += "<tbody>";
+                    datos += "<tr>";
+                        datos += "<th>";
+                        datos += "Nombre";
+                        datos += "</th>";
+                        datos += "<td>";
+                        datos += elementos.nombre;
+                        datos += "</td>";
+                    datos += "</tr>";
+                    datos += "<tr>";
+                        datos += "<th>";
+                        datos += "Empresa";
+                        datos += "</th>";
+                        datos += "<td>";
+                        datos += elementos.Empresa.nombre ;
+                        datos += "</td>";
+                    datos += "</tr>";
+                    datos += "<tr>";
+                        datos += "<th>";
+                        datos += "Puntuacion";
+                        datos += "</th>";
+                        datos += "<td>";
+                        datos += elementos.puntuacion;
+                        datos += "</td>";
+                    datos += "</tr>";
+                    datos += "</tbody>";
+
+                
                 }
+                datos += "</table>";
+
                 return Json(datos, JsonRequestBehavior.AllowGet); ;
 
         }
@@ -179,7 +208,7 @@ namespace GoTaxiV2.Controllers
             var transporte = db.transporte.Where(p => p.estado == "A");
             double l1 = double.Parse(var1) ;
             double l2 = double.Parse(var2);
-            String encabezado = "<table class='table table-hover table-condensed' > <thead><tr><th>*</th> <th><b>Nombre</b></th><th><b>Distancia</b><th></tr></thead><tbody>";
+            String encabezado = "<table class='table table-hover table-condensed' data-click-to-select='true' data-select-item-name='radioName'> <thead><tr><th data-radio='true'>*</th> <th><b>Nombre</b></th><th><b>Distancia</b><th></tr></thead><tbody>";
             String detalle = "";
 
             //int i = 0;
@@ -239,7 +268,8 @@ namespace GoTaxiV2.Controllers
                 {
                     double mas = Convert.ToDouble(nn[x]) ;
                     mas = Math.Round(mas, 2);
-                    detalle += "<tr class= 'motorista' id = '" + n[x].idConductor + "' ><td><img mot= '" + n[x].idConductor + "' class= 'imgMoto' width='70' height='70'  class= 'center-block img-responsive img-rounded' src = '/images/blog-img.jpg' ></td><td>" + n[x].nombre + "</td> <td>" + mas + " km. </td></tr>";
+                    detalle += "<tr class= 'motorista' mot = '" + n[x].idConductor + "' data-index='" + x + "' >";
+                    detalle += "<td><input class= 'check' type='checkbox' id= 'check" + n[x].idConductor + "'></td><td><img data-toggle='modal' data-target='#myModal'  mot= '" + n[x].idConductor + "' width='70' height='70'  class= 'imgMoto center-block img-responsive img-rounded' src = '/images/blog-img.jpg' ></td><td>" + n[x].nombre + "</td> <td>" + mas + " km. </td></tr>";
                 }
 
 
