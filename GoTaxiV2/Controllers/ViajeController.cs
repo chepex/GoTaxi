@@ -269,7 +269,7 @@ namespace GoTaxiV2.Controllers
                     double mas = Convert.ToDouble(nn[x]) ;
                     mas = Math.Round(mas, 2);
                     detalle += "<tr class= 'motorista' mot = '" + n[x].idConductor + "' data-index='" + x + "' >";
-                    detalle += "<td><input class= 'check' type='checkbox' id= 'check" + n[x].idConductor + "'></td><td><img data-toggle='modal' data-target='#myModal'  mot= '" + n[x].idConductor + "' width='70' height='70'  class= 'imgMoto center-block img-responsive img-rounded' src = '/images/blog-img.jpg' ></td><td>" + n[x].nombre + "</td> <td>" + mas + " km. </td></tr>";
+                    detalle += "<td><input class= 'check' type='checkbox' id= 'check" + n[x].idConductor + "' mot = '" + n[x].idConductor + "' ></td><td><img data-toggle='modal' data-target='#myModal'  mot= '" + n[x].idConductor + "' width='70' height='70'  class= 'imgMoto center-block img-responsive img-rounded' src = '/images/blog-img.jpg' ></td><td>" + n[x].nombre + "</td> <td>" + mas + " km. </td></tr>";
                 }
 
 

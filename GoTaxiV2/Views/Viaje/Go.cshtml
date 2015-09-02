@@ -54,13 +54,20 @@
                     //alert(msg);
                 }
             });
-            
-            
+           
+
+        });
+            $("#Solicitar").live("click", function () {
+              
+                var mas = $("#resultado").find("input:checkbox:checked").attr("mot");
+               
+                alert("mas--" + mas);
             
         });
 
         //$("#rootwizard").bootstrapWizard();
 
+     
     });
 
 
@@ -130,8 +137,8 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="go">
 
-            <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
-            <button type="button" class="btn btn-default btn-lg btn-block">Block level button</button>
+            <button type="button" id ="Solicitar" class="btn btn-primary btn-lg btn-block">Enviar Solicitud</button>
+            <button type="button" class="btn btn-default btn-lg btn-block">Cancelar</button>
         </div>
         
     </div>
