@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using GoTaxiV2.Models;
 using System.Data.Objects;
+using System.Data.Entity.Validation;
 
 namespace GoTaxiV2.Controllers
 {
@@ -198,6 +199,55 @@ namespace GoTaxiV2.Controllers
 
         }
 
+
+          public ActionResult Solicitar(String vorigen, String vdestino, String vconductor)
+
+        {
+
+              int jj= Int32.Parse(vconductor);
+
+              conductor vconductor2 = db.conductor.Where(p => p.idConductor == jj).FirstOrDefault();
+
+
+            viaje vj = new viaje
+            {
+                origen = vorigen,
+                destino = vdestino,
+                fecha= DateTime.Today,
+                conductor = vconductor2,
+                idTransporte = vconductor2.idTransporte,
+                idConductor =  Int32.Parse(vconductor)
+
+                // …
+            };
+
+            // Add the new object to the Orders collection.
+            db.viaje.Add(vj);
+
+            string datos = "ok" + vconductor2;
+
+            try {
+                db.SaveChanges();
+            }
+            
+              catch (DbEntityValidationException dbEx)
+{
+    foreach (var validationErrors in dbEx.EntityValidationErrors)
+    {
+        foreach (var validationError in validationErrors.ValidationErrors)
+        {
+            datos += "Property: {0} Error: {1}"+ 
+                                    validationError.PropertyName+
+                                    validationError.ErrorMessage;
+        }
+    }
+}
+
+            
+
+            return Json(datos, JsonRequestBehavior.AllowGet); ;
+
+        }
 
         public ActionResult Summary(String var1, String var2)
         {

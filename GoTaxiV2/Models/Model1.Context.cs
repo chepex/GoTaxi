@@ -31,7 +31,6 @@ namespace GoTaxiV2.Models
         public DbSet<transporte> transporte { get; set; }
         public DbSet<usuario> usuario { get; set; }
         public DbSet<cotizacion> cotizacion { get; set; }
-        public DbSet<viaje> viaje { get; set; }
         public DbSet<UserProfile> UserProfile { get; set; }
         public DbSet<webpages_Membership> webpages_Membership { get; set; }
         public DbSet<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
@@ -45,5 +44,6 @@ namespace GoTaxiV2.Models
         public DbSet<TipoComentario> TipoComentario { get; set; }
         public DbSet<comentario> comentario { get; set; }
         public DbSet<Tarifa> Tarifa { get; set; }
+        public DbSet<viaje> viaje { get; set; }
     }
 }

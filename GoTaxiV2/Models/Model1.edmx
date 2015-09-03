@@ -44,7 +44,7 @@
           <Key>
             <PropertyRef Name="idEmpresa" />
           </Key>
-          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" />
           <Property Name="representante" Type="varchar" MaxLength="50" />
@@ -56,14 +56,14 @@
           <Key>
             <PropertyRef Name="idEstado" />
           </Key>
-          <Property Name="idEstado" Type="int" Nullable="false" />
+          <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="pais">
           <Key>
             <PropertyRef Name="idPais" />
           </Key>
-          <Property Name="idPais" Type="int" Nullable="false" />
+          <Property Name="idPais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="moneda" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -71,7 +71,7 @@
           <Key>
             <PropertyRef Name="idPermiso" />
           </Key>
-          <Property Name="idPermiso" Type="int" Nullable="false" />
+          <Property Name="idPermiso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="idRol" Type="int" />
           <Property Name="objeto" Type="varchar" MaxLength="50" />
@@ -80,7 +80,7 @@
           <Key>
             <PropertyRef Name="IdPunto" />
           </Key>
-          <Property Name="IdPunto" Type="int" Nullable="false" />
+          <Property Name="IdPunto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idViaje" Type="int" />
           <Property Name="fechaHora" Type="date" />
           <Property Name="latitud" Type="varchar" MaxLength="50" />
@@ -110,7 +110,7 @@
           <Key>
             <PropertyRef Name="idTarifa" />
           </Key>
-          <Property Name="idTarifa" Type="int" Nullable="false" />
+          <Property Name="idTarifa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tarifa" Type="int" />
           <Property Name="idEstado" Type="int" />
         </EntityType>
@@ -118,7 +118,7 @@
           <Key>
             <PropertyRef Name="idTipoComentario" />
           </Key>
-          <Property Name="idTipoComentario" Type="int" Nullable="false" />
+          <Property Name="idTipoComentario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="tipoTransporte">
@@ -176,11 +176,11 @@
           <Key>
             <PropertyRef Name="idViaje" />
           </Key>
-          <Property Name="idViaje" Type="int" Nullable="false" />
+          <Property Name="idViaje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idUsuario" Type="int" />
-          <Property Name="idConductor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="origen" Type="nchar" MaxLength="10" />
-          <Property Name="destino" Type="nchar" MaxLength="10" />
+          <Property Name="idConductor" Type="int" Nullable="false" />
+          <Property Name="origen" Type="varchar" MaxLength="250" />
+          <Property Name="destino" Type="varchar" MaxLength="250" />
           <Property Name="fecha" Type="date" />
           <Property Name="valor" Type="nchar" MaxLength="10" />
           <Property Name="idTransporte" Type="int" />
@@ -604,9 +604,9 @@
           <Property Name="idTransporte" Type="Int32" />
           <NavigationProperty Name="transporte" Relationship="Self.FK_conductor_transporte" FromRole="conductor" ToRole="transporte" />
           <NavigationProperty Name="usuario" Relationship="Self.FK_conductor_usuario" FromRole="conductor" ToRole="usuario" />
-          <NavigationProperty Name="viaje" Relationship="SIGTPPModel.FK_viaje_conductor" FromRole="conductor" ToRole="viaje" />
           <Property Name="idEmpresa" Type="Int32" />
           <NavigationProperty Name="Empresa" Relationship="SIGTPPModel.FK_conductor_Empresa" FromRole="conductor" ToRole="Empresa" />
+          <NavigationProperty Name="viaje" Relationship="SIGTPPModel.FK_viaje_conductor" FromRole="conductor" ToRole="viaje" />
         </EntityType>
         <EntityType Name="roles">
           <Key>
@@ -645,11 +645,11 @@
           <NavigationProperty Name="tipoTransporte" Relationship="Self.FK_transporte_tipoTransporte" FromRole="transporte" ToRole="tipoTransporte" />
           <NavigationProperty Name="usuario" Relationship="Self.FK_transporte_usuarios" FromRole="transporte" ToRole="usuario" />
           <NavigationProperty Name="cotizacion" Relationship="SIGTPPModel.FK_cotizacion_transporte1" FromRole="transporte" ToRole="cotizacion" />
-          <NavigationProperty Name="viaje" Relationship="SIGTPPModel.FK_viaje_transporte1" FromRole="transporte" ToRole="viaje" />
           <Property Name="latitud" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="longitud" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="idEstado" Type="Int32" />
           <NavigationProperty Name="Estados" Relationship="SIGTPPModel.FK_transporte_Estados" FromRole="transporte" ToRole="Estados" />
+          <NavigationProperty Name="viaje" Relationship="SIGTPPModel.FK_viaje_transporte1" FromRole="transporte" ToRole="viaje" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
@@ -763,7 +763,6 @@
             <End Role="transporte" EntitySet="transporte" />
           </AssociationSet>
           <EntitySet Name="cotizacion" EntityType="SIGTPPModel.cotizacion" />
-          <EntitySet Name="viaje" EntityType="SIGTPPModel.viaje" />
           <AssociationSet Name="FK_cotizacion_transporte1" Association="SIGTPPModel.FK_cotizacion_transporte1">
             <End Role="transporte" EntitySet="transporte" />
             <End Role="cotizacion" EntitySet="cotizacion" />
@@ -772,14 +771,6 @@
             <End Role="usuario" EntitySet="usuario" />
             <End Role="cotizacion" EntitySet="cotizacion" />
           </AssociationSet>
-          <AssociationSet Name="FK_viaje_transporte1" Association="SIGTPPModel.FK_viaje_transporte1">
-            <End Role="transporte" EntitySet="transporte" />
-            <End Role="viaje" EntitySet="viaje" />
-          </AssociationSet>
-          <AssociationSet Name="FK_viaje_usuario1" Association="SIGTPPModel.FK_viaje_usuario1">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="viaje" EntitySet="viaje" />
-          </AssociationSet>
           <EntitySet Name="UserProfile" EntityType="SIGTPPModel.UserProfile" />
           <EntitySet Name="webpages_Membership" EntityType="SIGTPPModel.webpages_Membership" />
           <EntitySet Name="webpages_OAuthMembership" EntityType="SIGTPPModel.webpages_OAuthMembership" />
@@ -787,10 +778,6 @@
           <AssociationSet Name="webpages_UsersInRoles" Association="SIGTPPModel.webpages_UsersInRoles">
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
             <End Role="UserProfile" EntitySet="UserProfile" />
-          </AssociationSet>
-          <AssociationSet Name="FK_viaje_conductor" Association="SIGTPPModel.FK_viaje_conductor">
-            <End Role="conductor" EntitySet="conductor" />
-            <End Role="viaje" EntitySet="viaje" />
           </AssociationSet>
           <EntitySet Name="Empresa" EntityType="SIGTPPModel.Empresa" />
           <EntitySet Name="Estados" EntityType="SIGTPPModel.Estados" />
@@ -819,23 +806,36 @@
             <End Role="roles" EntitySet="roles" />
             <End Role="permisos" EntitySet="permisos" />
           </AssociationSet>
-          <AssociationSet Name="FK_Recorrido_viaje" Association="SIGTPPModel.FK_Recorrido_viaje">
-            <End Role="viaje" EntitySet="viaje" />
-            <End Role="Recorrido" EntitySet="Recorrido" />
-          </AssociationSet>
           <EntitySet Name="comentario" EntityType="SIGTPPModel.comentario" />
           <AssociationSet Name="FK_comentario_TipoComentario" Association="SIGTPPModel.FK_comentario_TipoComentario">
             <End Role="TipoComentario" EntitySet="TipoComentario" />
             <End Role="comentario" EntitySet="comentario" />
           </AssociationSet>
-          <AssociationSet Name="FK_viaje_comentario" Association="SIGTPPModel.FK_viaje_comentario">
-            <End Role="comentario" EntitySet="comentario" />
-            <End Role="viaje" EntitySet="viaje" />
-          </AssociationSet>
           <EntitySet Name="Tarifa" EntityType="SIGTPPModel.Tarifa" />
           <AssociationSet Name="FK_Tarifa_Estados" Association="SIGTPPModel.FK_Tarifa_Estados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Tarifa" EntitySet="Tarifa" />
+          </AssociationSet>
+          <EntitySet Name="viaje" EntityType="SIGTPPModel.viaje" />
+          <AssociationSet Name="FK_viaje_comentario" Association="SIGTPPModel.FK_viaje_comentario">
+            <End Role="comentario" EntitySet="comentario" />
+            <End Role="viaje" EntitySet="viaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_viaje_conductor" Association="SIGTPPModel.FK_viaje_conductor">
+            <End Role="conductor" EntitySet="conductor" />
+            <End Role="viaje" EntitySet="viaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recorrido_viaje" Association="SIGTPPModel.FK_Recorrido_viaje">
+            <End Role="viaje" EntitySet="viaje" />
+            <End Role="Recorrido" EntitySet="Recorrido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_viaje_transporte1" Association="SIGTPPModel.FK_viaje_transporte1">
+            <End Role="transporte" EntitySet="transporte" />
+            <End Role="viaje" EntitySet="viaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_viaje_usuario1" Association="SIGTPPModel.FK_viaje_usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="viaje" EntitySet="viaje" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="cotizacion">
@@ -851,26 +851,6 @@
           <Property Name="valor" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="transporte" Relationship="SIGTPPModel.FK_cotizacion_transporte1" FromRole="cotizacion" ToRole="transporte" />
           <NavigationProperty Name="usuario" Relationship="SIGTPPModel.FK_cotizacion_usuario1" FromRole="cotizacion" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="viaje">
-          <Key>
-            <PropertyRef Name="idViaje" />
-          </Key>
-          <Property Name="idViaje" Type="Int32" Nullable="false" />
-          <Property Name="idUsuario" Type="Int32" />
-          <Property Name="idConductor" Type="Int32" Nullable="false" />
-          <Property Name="origen" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="destino" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="fecha" Type="DateTime" Precision="0" />
-          <Property Name="valor" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="idTransporte" Type="Int32" />
-          <NavigationProperty Name="transporte" Relationship="SIGTPPModel.FK_viaje_transporte1" FromRole="viaje" ToRole="transporte" />
-          <NavigationProperty Name="usuario" Relationship="SIGTPPModel.FK_viaje_usuario1" FromRole="viaje" ToRole="usuario" />
-          <NavigationProperty Name="conductor" Relationship="SIGTPPModel.FK_viaje_conductor" FromRole="viaje" ToRole="conductor" />
-          <Property Name="calificacion" Type="Int32" />
-          <Property Name="idComentario" Type="Int32" />
-          <NavigationProperty Name="Recorrido" Relationship="SIGTPPModel.FK_Recorrido_viaje" FromRole="viaje" ToRole="Recorrido" />
-          <NavigationProperty Name="comentario" Relationship="SIGTPPModel.FK_viaje_comentario" FromRole="viaje" ToRole="comentario" />
         </EntityType>
         <Association Name="FK_cotizacion_transporte1">
           <End Type="SIGTPPModel.transporte" Role="transporte" Multiplicity="0..1" />
@@ -893,30 +873,6 @@
             </Principal>
             <Dependent Role="cotizacion">
               <PropertyRef Name="idUusario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_viaje_transporte1">
-          <End Type="SIGTPPModel.transporte" Role="transporte" Multiplicity="0..1" />
-          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="transporte">
-              <PropertyRef Name="idTransporte" />
-            </Principal>
-            <Dependent Role="viaje">
-              <PropertyRef Name="idTransporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_viaje_usuario1">
-          <End Type="SIGTPPModel.usuario" Role="usuario" Multiplicity="0..1" />
-          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="viaje">
-              <PropertyRef Name="idUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -964,18 +920,6 @@
         <Association Name="webpages_UsersInRoles">
           <End Type="SIGTPPModel.webpages_Roles" Role="webpages_Roles" Multiplicity="*" />
           <End Type="SIGTPPModel.UserProfile" Role="UserProfile" Multiplicity="*" />
-        </Association>
-        <Association Name="FK_viaje_conductor">
-          <End Type="SIGTPPModel.conductor" Role="conductor" Multiplicity="1" />
-          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="conductor">
-              <PropertyRef Name="idConductor" />
-            </Principal>
-            <Dependent Role="viaje">
-              <PropertyRef Name="idConductor" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <EntityType Name="Empresa">
           <Key>
@@ -1110,18 +1054,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Recorrido_viaje">
-          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="0..1" />
-          <End Type="SIGTPPModel.Recorrido" Role="Recorrido" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="viaje">
-              <PropertyRef Name="idViaje" />
-            </Principal>
-            <Dependent Role="Recorrido">
-              <PropertyRef Name="idViaje" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="comentario">
           <Key>
             <PropertyRef Name="idComentario" />
@@ -1145,18 +1077,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_viaje_comentario">
-          <End Type="SIGTPPModel.comentario" Role="comentario" Multiplicity="0..1" />
-          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="comentario">
-              <PropertyRef Name="idComentario" />
-            </Principal>
-            <Dependent Role="viaje">
-              <PropertyRef Name="idComentario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Tarifa">
           <Key>
             <PropertyRef Name="idTarifa" />
@@ -1175,6 +1095,86 @@
             </Principal>
             <Dependent Role="Tarifa">
               <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="viaje">
+          <Key>
+            <PropertyRef Name="idViaje" />
+          </Key>
+          <Property Name="idViaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="idConductor" Type="Int32" Nullable="false" />
+          <Property Name="origen" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="destino" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="valor" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="idTransporte" Type="Int32" />
+          <Property Name="calificacion" Type="Int32" />
+          <Property Name="idComentario" Type="Int32" />
+          <NavigationProperty Name="comentario" Relationship="SIGTPPModel.FK_viaje_comentario" FromRole="viaje" ToRole="comentario" />
+          <NavigationProperty Name="conductor" Relationship="SIGTPPModel.FK_viaje_conductor" FromRole="viaje" ToRole="conductor" />
+          <NavigationProperty Name="Recorrido" Relationship="SIGTPPModel.FK_Recorrido_viaje" FromRole="viaje" ToRole="Recorrido" />
+          <NavigationProperty Name="transporte" Relationship="SIGTPPModel.FK_viaje_transporte1" FromRole="viaje" ToRole="transporte" />
+          <NavigationProperty Name="usuario" Relationship="SIGTPPModel.FK_viaje_usuario1" FromRole="viaje" ToRole="usuario" />
+        </EntityType>
+        <Association Name="FK_viaje_comentario">
+          <End Type="SIGTPPModel.comentario" Role="comentario" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comentario">
+              <PropertyRef Name="idComentario" />
+            </Principal>
+            <Dependent Role="viaje">
+              <PropertyRef Name="idComentario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_viaje_conductor">
+          <End Type="SIGTPPModel.conductor" Role="conductor" Multiplicity="1" />
+          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="conductor">
+              <PropertyRef Name="idConductor" />
+            </Principal>
+            <Dependent Role="viaje">
+              <PropertyRef Name="idConductor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recorrido_viaje">
+          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.Recorrido" Role="Recorrido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="viaje">
+              <PropertyRef Name="idViaje" />
+            </Principal>
+            <Dependent Role="Recorrido">
+              <PropertyRef Name="idViaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_viaje_transporte1">
+          <End Type="SIGTPPModel.transporte" Role="transporte" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transporte">
+              <PropertyRef Name="idTransporte" />
+            </Principal>
+            <Dependent Role="viaje">
+              <PropertyRef Name="idTransporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_viaje_usuario1">
+          <End Type="SIGTPPModel.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="viaje">
+              <PropertyRef Name="idUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1266,22 +1266,6 @@
                 <ScalarProperty Name="Origen" ColumnName="Origen" />
                 <ScalarProperty Name="idUusario" ColumnName="idUusario" />
                 <ScalarProperty Name="idCotizacion" ColumnName="idCotizacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="viaje">
-            <EntityTypeMapping TypeName="SIGTPPModel.viaje">
-              <MappingFragment StoreEntitySet="viaje">
-                <ScalarProperty Name="idComentario" ColumnName="idComentario" />
-                <ScalarProperty Name="calificacion" ColumnName="calificacion" />
-                <ScalarProperty Name="idTransporte" ColumnName="idTransporte" />
-                <ScalarProperty Name="valor" ColumnName="valor" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="destino" ColumnName="destino" />
-                <ScalarProperty Name="origen" ColumnName="origen" />
-                <ScalarProperty Name="idConductor" ColumnName="idConductor" />
-                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-                <ScalarProperty Name="idViaje" ColumnName="idViaje" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1422,6 +1406,22 @@
                 <ScalarProperty Name="idEstado" ColumnName="idEstado" />
                 <ScalarProperty Name="tarifa1" ColumnName="tarifa" />
                 <ScalarProperty Name="idTarifa" ColumnName="idTarifa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viaje">
+            <EntityTypeMapping TypeName="SIGTPPModel.viaje">
+              <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="idComentario" ColumnName="idComentario" />
+                <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+                <ScalarProperty Name="idTransporte" ColumnName="idTransporte" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="destino" ColumnName="destino" />
+                <ScalarProperty Name="origen" ColumnName="origen" />
+                <ScalarProperty Name="idConductor" ColumnName="idConductor" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idViaje" ColumnName="idViaje" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

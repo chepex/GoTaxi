@@ -58,10 +58,22 @@
 
         });
             $("#Solicitar").live("click", function () {
-              
+                
                 var mas = $("#resultado").find("input:checkbox:checked").attr("mot");
+                var desde = $("#desde").val();
+                var hasta = $("#hasta").val();
                
-                alert("mas--" + mas);
+                alert("motorista--" + mas + "desde--" + desde + "hasta--" + hasta);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Viaje/Solicitar',
+                    data: 'vorigen=' + desde + '&vdestino='+hasta+'&vconductor='+mas,
+                    success: function (msg) {
+                        alert(msg);
+                        //alert(msg);
+                    }
+                });
             
         });
 

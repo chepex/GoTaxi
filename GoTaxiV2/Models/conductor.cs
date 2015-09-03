@@ -31,7 +31,7 @@ namespace GoTaxiV2.Models
     
         public virtual transporte transporte { get; set; }
         public virtual usuario usuario { get; set; }
-        public virtual ICollection<viaje> viaje { get; set; }
         public virtual Empresa Empresa { get; set; }
+        public virtual ICollection<viaje> viaje { get; set; }
     }
 }

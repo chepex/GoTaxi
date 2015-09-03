@@ -37,7 +37,7 @@ namespace GoTaxiV2.Models
         public virtual tipoTransporte tipoTransporte { get; set; }
         public virtual usuario usuario { get; set; }
         public virtual ICollection<cotizacion> cotizacion { get; set; }
-        public virtual ICollection<viaje> viaje { get; set; }
         public virtual Estados Estados { get; set; }
+        public virtual ICollection<viaje> viaje { get; set; }
     }
 }
