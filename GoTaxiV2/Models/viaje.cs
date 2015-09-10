@@ -29,11 +29,13 @@ namespace GoTaxiV2.Models
         public Nullable<int> idTransporte { get; set; }
         public Nullable<int> calificacion { get; set; }
         public Nullable<int> idComentario { get; set; }
+        public Nullable<int> idEstado { get; set; }
     
         public virtual comentario comentario { get; set; }
         public virtual conductor conductor { get; set; }
         public virtual ICollection<Recorrido> Recorrido { get; set; }
         public virtual transporte transporte { get; set; }
         public virtual usuario usuario { get; set; }
+        public virtual Estados Estados { get; set; }
     }
 }

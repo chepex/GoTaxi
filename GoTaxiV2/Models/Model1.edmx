@@ -186,6 +186,7 @@
           <Property Name="idTransporte" Type="int" />
           <Property Name="calificacion" Type="int" />
           <Property Name="idComentario" Type="int" />
+          <Property Name="idEstado" Type="int" />
         </EntityType>
         <EntityType Name="webpages_Membership">
           <Key>
@@ -455,6 +456,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_viaje_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+          <End Role="viaje" Type="Self.viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="viaje">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_viaje_transporte1">
           <End Role="transporte" Type="Self.transporte" Multiplicity="0..1" />
           <End Role="viaje" Type="Self.viaje" Multiplicity="*" />
@@ -575,6 +588,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_viaje_conductor" Association="Self.FK_viaje_conductor">
             <End Role="conductor" EntitySet="conductor" />
+            <End Role="viaje" EntitySet="viaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_viaje_Estados" Association="Self.FK_viaje_Estados">
+            <End Role="Estados" EntitySet="Estados" />
             <End Role="viaje" EntitySet="viaje" />
           </AssociationSet>
           <AssociationSet Name="FK_viaje_transporte1" Association="Self.FK_viaje_transporte1">
@@ -837,6 +854,10 @@
             <End Role="usuario" EntitySet="usuario" />
             <End Role="viaje" EntitySet="viaje" />
           </AssociationSet>
+          <AssociationSet Name="FK_viaje_Estados" Association="SIGTPPModel.FK_viaje_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="viaje" EntitySet="viaje" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="cotizacion">
           <Key>
@@ -944,6 +965,7 @@
           <NavigationProperty Name="roles" Relationship="SIGTPPModel.FK_roles_Estados" FromRole="Estados" ToRole="roles" />
           <NavigationProperty Name="transporte" Relationship="SIGTPPModel.FK_transporte_Estados" FromRole="Estados" ToRole="transporte" />
           <NavigationProperty Name="Tarifa" Relationship="SIGTPPModel.FK_Tarifa_Estados" FromRole="Estados" ToRole="Tarifa" />
+          <NavigationProperty Name="viaje" Relationship="SIGTPPModel.FK_viaje_Estados" FromRole="Estados" ToRole="viaje" />
         </EntityType>
         <EntityType Name="pais">
           <Key>
@@ -1117,6 +1139,8 @@
           <NavigationProperty Name="Recorrido" Relationship="SIGTPPModel.FK_Recorrido_viaje" FromRole="viaje" ToRole="Recorrido" />
           <NavigationProperty Name="transporte" Relationship="SIGTPPModel.FK_viaje_transporte1" FromRole="viaje" ToRole="transporte" />
           <NavigationProperty Name="usuario" Relationship="SIGTPPModel.FK_viaje_usuario1" FromRole="viaje" ToRole="usuario" />
+          <Property Name="idEstado" Type="Int32" />
+          <NavigationProperty Name="Estados" Relationship="SIGTPPModel.FK_viaje_Estados" FromRole="viaje" ToRole="Estados" />
         </EntityType>
         <Association Name="FK_viaje_comentario">
           <End Type="SIGTPPModel.comentario" Role="comentario" Multiplicity="0..1" />
@@ -1175,6 +1199,18 @@
             </Principal>
             <Dependent Role="viaje">
               <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_viaje_Estados">
+          <End Type="SIGTPPModel.Estados" Role="Estados" Multiplicity="0..1" />
+          <End Type="SIGTPPModel.viaje" Role="viaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="viaje">
+              <PropertyRef Name="idEstado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1412,6 +1448,7 @@
           <EntitySetMapping Name="viaje">
             <EntityTypeMapping TypeName="SIGTPPModel.viaje">
               <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
                 <ScalarProperty Name="idComentario" ColumnName="idComentario" />
                 <ScalarProperty Name="calificacion" ColumnName="calificacion" />
                 <ScalarProperty Name="idTransporte" ColumnName="idTransporte" />

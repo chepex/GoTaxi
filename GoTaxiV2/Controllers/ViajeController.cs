@@ -26,6 +26,12 @@ namespace GoTaxiV2.Controllers
         //
         // GET: /Viaje/
 
+        public ActionResult Solicitud()
+        {
+            //var viaje = db.viaje.Include(v => v.conductor).Include(v => v.transporte).Include(v => v.usuario);
+            return View();
+        }
+
         public ActionResult Index()
         {
             var viaje = db.viaje.Include(v => v.conductor).Include(v => v.transporte).Include(v => v.usuario);
@@ -199,7 +205,23 @@ namespace GoTaxiV2.Controllers
 
         }
 
+        public ActionResult lsolicitudes()
+        {
+            string datos = "";
+            int idConductor= 19;
+            
+           var vviajes = db.viaje.Where(p => p.idConductor == idConductor  && p.idEstado == 3 ) ;
 
+           foreach (var elementos in vviajes)
+           {
+
+               
+               datos += "<button type='button' id ='detalle' vorigen = '"+elementos.origen+"' vdestino = '"+elementos.destino+"'  idViaje= '"+elementos.idViaje+"'  class='btnDetalle btn btn-primary btn-lg btn-block'>"+elementos.idViaje+"</button>";
+           }
+
+
+            return Json(datos, JsonRequestBehavior.AllowGet); ;
+        }
           public ActionResult Solicitar(String vorigen, String vdestino, String vconductor)
 
         {
@@ -216,32 +238,24 @@ namespace GoTaxiV2.Controllers
                 fecha= DateTime.Today,
                 conductor = vconductor2,
                 idTransporte = vconductor2.idTransporte,
-                idConductor =  Int32.Parse(vconductor)
-
-                // …
+                idConductor =  Int32.Parse(vconductor),
+                idEstado = 3 //Solicitado
+              
             };
 
             // Add the new object to the Orders collection.
             db.viaje.Add(vj);
 
-            string datos = "ok" + vconductor2;
+            string datos = "ok";
 
             try {
                 db.SaveChanges();
             }
             
               catch (DbEntityValidationException dbEx)
-{
-    foreach (var validationErrors in dbEx.EntityValidationErrors)
-    {
-        foreach (var validationError in validationErrors.ValidationErrors)
-        {
-            datos += "Property: {0} Error: {1}"+ 
-                                    validationError.PropertyName+
-                                    validationError.ErrorMessage;
-        }
-    }
-}
+            {
+                datos = "Surgio un error grabe"+dbEx.Message;
+            }
 
             
 

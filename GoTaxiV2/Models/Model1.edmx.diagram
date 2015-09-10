@@ -45,6 +45,7 @@
         <AssociationConnector Association="SIGTPPModel.FK_Recorrido_viaje" />
         <AssociationConnector Association="SIGTPPModel.FK_viaje_transporte1" />
         <AssociationConnector Association="SIGTPPModel.FK_viaje_usuario1" />
+        <AssociationConnector Association="SIGTPPModel.FK_viaje_Estados" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

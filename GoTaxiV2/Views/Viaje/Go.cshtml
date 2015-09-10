@@ -16,6 +16,7 @@
             var olatitud = $("#olatitud").val();
             var olongitud = $("#olongitud").val();
             $.ajax({
+
                 type: 'POST',
                 url: '/Viaje/Summary',
                 data: 'var1=' + olatitud + '&var2=' + olongitud,
@@ -70,7 +71,11 @@
                     url: '/Viaje/Solicitar',
                     data: 'vorigen=' + desde + '&vdestino='+hasta+'&vconductor='+mas,
                     success: function (msg) {
-                        alert(msg);
+                        if (msg == "ok") {
+                            alert("Su solicitud ha sido envia en unos segundos recibira la respuesta");
+                        } else {
+                            alert(msg);
+                        }
                         //alert(msg);
                     }
                 });

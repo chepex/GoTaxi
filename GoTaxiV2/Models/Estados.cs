@@ -19,6 +19,7 @@ namespace GoTaxiV2.Models
             this.roles = new HashSet<roles>();
             this.transporte = new HashSet<transporte>();
             this.Tarifa = new HashSet<Tarifa>();
+            this.viaje = new HashSet<viaje>();
         }
     
         public int idEstado { get; set; }
@@ -27,5 +28,6 @@ namespace GoTaxiV2.Models
         public virtual ICollection<roles> roles { get; set; }
         public virtual ICollection<transporte> transporte { get; set; }
         public virtual ICollection<Tarifa> Tarifa { get; set; }
+        public virtual ICollection<viaje> viaje { get; set; }
     }
 }
