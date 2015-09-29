@@ -7,7 +7,18 @@
     <script>
 
    var tm = setInterval(getSolicitudes, 5000);
-    $(document).ready(function () { 
+   $(document).ready(function () {
+
+       $("#mas2").hide();
+       $("#resultado").show();
+       $("#btnback").live("click", function () {
+           $("#resultado").show();
+           $("#map_canvas").hide();
+           $("#mas2").hide();
+           
+           getSolicitudes();
+       });
+
         $(".btnDetalle").live("click", function () {        
             var vorigen = $(this).attr("vorigen");
             var vdestino = $(this).attr("vdestino");
@@ -15,8 +26,10 @@
             $("#btnOk").attr("idViaje",idViaje) ;
             
             $("#resultado").html("");
+            $("#mas2").show();
+            
             var mas = getLL(vorigen);
-            alert(mas);
+           // alert(mas);
             dibujarMapa(vorigen, vdestino);
         });
 
@@ -27,7 +40,11 @@
                 url: '/Viaje/Asignar',
                 data: 'idViaje=' + idViaje,
                 success: function (msg) {
+                   
                     $("#resultado").html(msg);
+                    $("#resultado").hide();
+                    $("#mas2").hide();
+                    
                 }
             });
         });
@@ -36,7 +53,7 @@
         $("#contador").val("1");
         var contado = $("#contador").val();
         var che = parseInt(contado);
-        alert("paso1:" + che);
+        
         if (che != 1) {
             alert("paso3");
         }
@@ -49,9 +66,9 @@
         $("#resultado").html("mario mixco gonzalez");
         $.ajax({
             type: 'POST',
-            url: '/Viaje/lsolicitudes',
-            
+            url: '/Viaje/lsolicitudes',            
             success: function (msg) {
+                
                 $("#resultado").html(msg);
             }
         });
@@ -61,6 +78,8 @@
 
     function dibujarMapa(vorigen, vdestino) {
         $("#resultado").hide();
+        $("#map_canvas").show();
+        
         var map = new GMap2(document.getElementById("map_canvas"));
         //centramos el mapa en una latitud y longitud deseadas
         map.setCenter(new GLatLng(40.407, -3.68), 5);
@@ -71,7 +90,6 @@
     }
 
 </script>
-
 
 
 
@@ -100,7 +118,7 @@
             <button type="button" class="btn btn-danger ">No</button>
         </div>
         <div class="btn-group" role="group">
-            <button type="button" class="btn  btn-info ">Back</button>
+            <button id="btnback" type="button" class="btn  btn-info ">Back</button>
         </div>
     </div>
 </div>

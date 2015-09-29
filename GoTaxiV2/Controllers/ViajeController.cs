@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using GoTaxiV2.Models;
 using System.Data.Objects;
 using System.Data.Entity.Validation;
+using WebMatrix.WebData;
 
 namespace GoTaxiV2.Controllers
 {
@@ -29,6 +30,7 @@ namespace GoTaxiV2.Controllers
         public ActionResult Solicitud()
         {
             //var viaje = db.viaje.Include(v => v.conductor).Include(v => v.transporte).Include(v => v.usuario);
+            
             return View();
         }
 
@@ -209,16 +211,24 @@ namespace GoTaxiV2.Controllers
         {
             string datos = "";
             int idConductor= 19;
-            
-           var vviajes = db.viaje.Where(p => p.idConductor == idConductor  && p.idEstado == 3 ) ;
-
-           foreach (var elementos in vviajes)
-           {
-
+            if (User.Identity.IsAuthenticated)
+            {
+               // WebSecurity.Logout();
                
-               datos += "<button type='button' id ='detalle' vorigen = '"+elementos.origen+"' vdestino = '"+elementos.destino+"'  idViaje= '"+elementos.idViaje+"'  class='btnDetalle btn btn-primary btn-lg btn-block'>"+elementos.idViaje+"</button>";
-           }
+                    //int idUsuario = (int)WebSecurity.CurrentUserId;
+                int idUsuario = (int)12;
 
+
+                    var vviajes = db.viaje.Where(p => p.conductor.idUsuario == idUsuario && p.idEstado == 3);
+
+                    foreach (var elementos in vviajes)
+                    {
+
+
+                        datos += "<button type='button' id ='detalle' vorigen = '" + elementos.origen + "' vdestino = '" + elementos.destino + "'  idViaje= '" + elementos.idViaje + "'  class='btnDetalle btn btn-primary btn-lg btn-block'>" + elementos.idViaje + "</button>";
+                    }
+                
+            }
 
             return Json(datos, JsonRequestBehavior.AllowGet); ;
         }
