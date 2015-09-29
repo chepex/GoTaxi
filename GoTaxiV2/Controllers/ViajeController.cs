@@ -263,6 +263,26 @@ namespace GoTaxiV2.Controllers
 
         }
 
+
+          public ActionResult Asignar(String idViaje)
+        {
+            int vid =int.Parse( idViaje);
+            var cust =
+                      (from v in db.viaje
+                       where v.idViaje == vid
+                       select v).First();
+
+            cust.idEstado = 4;
+
+            db.SaveChanges();
+
+            string datos = idViaje;
+
+
+            return Json(datos, JsonRequestBehavior.AllowGet); ;
+
+        }
+
         public ActionResult Summary(String var1, String var2)
         {
 

@@ -28,14 +28,7 @@
                         </button>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="index.html">Home</a></li>
-                            <li>@Html.ActionLink("Go", "Go", "Viaje")</li>
-
-                            <li><a href="projects.html">Cotizar</a></li>
-                            <li><a href="services.html">Viajes</a></li>
-                            <li><a href="services.html">Motorista</a></li>
-                        </ul>
+                        @Html.Partial("_MenuPartial")
 
                     </div>
                 </div>
@@ -45,13 +38,18 @@
         
             
 
-
+       
              
               
         <div class="container" style="padding-top: 1em;">
             <div id="body">
              @RenderSection("featured", required: false)             
-             @RenderBody()             
+             @RenderBody()  
+                
+                <section id="login">
+                    @Html.Partial("_LoginPartial")
+                   
+                </section>           
             </div>
         </div>
 

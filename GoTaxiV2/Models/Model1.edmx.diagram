@@ -18,11 +18,6 @@
         <EntityTypeShape EntityType="SIGTPPModel.cotizacion" Width="1.5" PointX="7.5" PointY="0.875" />
         <AssociationConnector Association="SIGTPPModel.FK_cotizacion_transporte1" />
         <AssociationConnector Association="SIGTPPModel.FK_cotizacion_usuario1" />
-        <EntityTypeShape EntityType="SIGTPPModel.UserProfile" Width="1.5" PointX="12.625" PointY="0.875" />
-        <EntityTypeShape EntityType="SIGTPPModel.webpages_Membership" Width="1.5" PointX="17.5" PointY="5" />
-        <EntityTypeShape EntityType="SIGTPPModel.webpages_OAuthMembership" Width="1.5" PointX="15.625" PointY="5" />
-        <EntityTypeShape EntityType="SIGTPPModel.webpages_Roles" Width="1.5" PointX="10.375" PointY="0.875" />
-        <AssociationConnector Association="SIGTPPModel.webpages_UsersInRoles" />
         <EntityTypeShape EntityType="SIGTPPModel.Empresa" Width="1.5" PointX="8" PointY="9.875" />
         <EntityTypeShape EntityType="SIGTPPModel.Estados" Width="1.5" PointX="0.75" PointY="3.625" />
         <EntityTypeShape EntityType="SIGTPPModel.pais" Width="1.5" PointX="5.625" PointY="10.375" />

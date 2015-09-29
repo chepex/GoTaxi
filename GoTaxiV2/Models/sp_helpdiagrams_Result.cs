@@ -10,18 +10,13 @@
 namespace GoTaxiV2.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class webpages_Roles
+    public partial class sp_helpdiagrams_Result
     {
-        public webpages_Roles()
-        {
-            this.UserProfile = new HashSet<UserProfile>();
-        }
-    
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
-    
-        public virtual ICollection<UserProfile> UserProfile { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

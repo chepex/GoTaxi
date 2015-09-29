@@ -1,0 +1,31 @@
+﻿@if (Request.IsAuthenticated)
+{
+    if (@User.IsInRole("Usuario") == true)
+    {
+
+
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li>@Html.ActionLink("Go", "Go", "Viaje")</li>
+
+            <li><a href="projects.html">Cotizar</a></li>
+            <li><a href="services.html">Viajes</a></li>
+            <li><a href="services.html">Motorista</a></li>
+        </ul>
+    }
+
+    if (@User.IsInRole("Motorista") == true)
+    {
+
+
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Home</a></li>
+            
+            
+            <li><a href="services.html">Viajes</a></li>
+            <li>@Html.ActionLink("Solicitud", "Solicitud", "Viaje")</li>
+        </ul>
+    }
+
+}
+
